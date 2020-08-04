@@ -1,0 +1,34 @@
+package com.lxy.packets.tools;
+
+import android.content.Context;
+
+public class DisplayHelper {
+    private static DisplayHelper mInstance=null;
+
+    private float mDensity=0;
+
+    private DisplayHelper(Context c)
+    {
+        mDensity=c.getResources().getDisplayMetrics().density;
+    }
+
+    public int getPx(float dp)
+    {
+        return (int) (dp * mDensity + 0.5f);
+    }
+
+    public int getDp(float px)
+    {
+        return (int) (px / mDensity + 0.5f);
+    }
+
+    public static DisplayHelper get()
+    {
+        return mInstance;
+    }
+
+    public static void init(Context c)
+    {
+        mInstance=new DisplayHelper(c);
+    }
+}
